@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 interface PageProps {
@@ -38,7 +39,7 @@ const page = async ({ params }: PageProps) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 max-w-md mx-auto mt-10">
       {backgroundImage ? (
-        <img
+        <Image
           src={backgroundImage}
           alt={title}
           className="w-full h-48 object-cover"

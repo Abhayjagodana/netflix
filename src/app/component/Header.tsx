@@ -1,4 +1,5 @@
 "use client";
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -10,7 +11,7 @@ const Footer = () => {
             {/* Left: Logo */}
             <div>
                 <Link href="/">
-                    <img
+                    <Image
                         src="/logo1.png"
                         alt="Netflix Logo"
                         className="h-10 w-auto cursor-pointer hover:opacity-80 transition-opacity"

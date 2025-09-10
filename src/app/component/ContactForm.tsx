@@ -58,10 +58,10 @@ function Signup() {
     };
 
     return (
-         <div className="min-h-screen flex items-center justify-center bg-gray-100 shadow-lg p-6 animate-fadeIn">
+        <div className="min-h-screen flex items-center justify-center bg-gray-100 shadow-lg p-6 animate-fadeIn">
             <div className="w-full max-w-md">
                 <h1 className="text-center mb-6 text-gray-700 font-light text-3xl ">
-                    We'd love to hear <span className="text-red-500 font-semibold">from you</span>. 
+                    We&apos;d love to hear <span className="text-red-500 font-semibold">from you</span>.
                 </h1>
                 <div className="bg-white shadow-md rounded-lg p-8">
                     <h1 className="text-2xl text-center font-bold mb-6">Contact Us</h1>
