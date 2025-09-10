@@ -5,7 +5,7 @@ interface Movie {
   title: string;
   release_year: number;
   description: string;
-backgroundImage: any;
+  backgroundImage: string | { url: string } | null;
 }
 
 interface ApiResponse {
@@ -35,7 +35,7 @@ const options = {
 
   try {
   const res = await fetch(url, options);
-  const result = await res.json();
+  const result:ApiResponse = await res.json();
   console.log("API Response:", result);
 
   if (!result.result || !result.result.data) {
