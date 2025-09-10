@@ -1,11 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import axios from "axios";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
 
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 function Signup() {
     const router = useRouter();
