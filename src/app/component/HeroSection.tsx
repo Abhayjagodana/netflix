@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function Hero({ title, ImageUrl }: { title: string; ImageUrl: string }) {
   return (
-    <section className="relative w-full h-screen bg-gradient-to-r from-purple-200 via-pink-100 to-blue-200 overflow-hidden">
-      <div className="mx-auto flex max-w-7xl h-full flex-col items-center justify-center px-6 py-16 md:flex-row">
+    <section className="relative w-full min-h-screen md:min-h-[110vh] lg:min-h-[120vh] bg-gradient-to-r from-purple-200 via-pink-100 to-blue-200 overflow-hidden">
+      <div className="mx-auto flex max-w-7xl h-[800px] flex-col items-center justify-center px-6 py-32 md:flex-row">
         {/* Left side: text */}
         <div className="max-w-xl text-center md:text-left">
           <h1 className="text-4xl font-extrabold text-gray-900 md:text-5xl">
@@ -30,8 +30,8 @@ export default function Hero({ title, ImageUrl }: { title: string; ImageUrl: str
           <Image
             src={ImageUrl}
             alt="Movie Illustration"
-            width={400}
-            height={400}
+            width={600}
+            height={600}
             className="drop-shadow-lg"
           />
         </div>

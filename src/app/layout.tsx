@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./component/Header";
 import { Mulish } from "next/font/google";
+import Footer from "./component/Footer";
 
 const mulish = Mulish({
   weight: '400',
@@ -25,6 +26,7 @@ export default function RootLayout({
         className={mulish.className} >
         <Header/>
         {children}
+        <Footer/>
       </body>
     </html>
   );

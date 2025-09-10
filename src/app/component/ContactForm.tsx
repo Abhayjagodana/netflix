@@ -17,93 +17,94 @@ function Signup() {
         message: "",
     });
 
-    const [buttonDisable, setButtonDisable] = useState(true);
-    const [loading, setLoading] = useState(false);
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setUser({ ...user, [e.target.name]: e.target.value });
+    };
 
-    useEffect(() => {
-        if (user.email && user.message && user.name && user.phone) {
-            setButtonDisable(false);
-        } else {
-            setButtonDisable(true);
-        }
-    }, [user]);
+    // const [buttonDisable, setButtonDisable] = useState(true);
+    // const [loading, setLoading] = useState(false);
+
+
+    // useEffect(() => {
+    //     if (user.email && user.message && user.name && user.phone) {
+    //         setButtonDisable(false);
+    //     } else {
+    //         setButtonDisable(true);
+    //     }
+    // }, [user]);
 
     const onSignup = async () => {
         try {
-            setLoading(true);
-            const res = await axios.post("/api", user); // ✅ Correct endpoint
-            console.log("contact success", res.data);
-            alert("Contact successful! Please check your email.");
-            router.push("/");
-        } catch (err) {
-            console.error("contact failed:", err);
-            if (err instanceof Error) {
-                toast.error(err.message);
+            const res = await fetch('/api', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            });
+            if (res.ok) {
+                alert("Sign-up Successful");
+                router.push('/');
             } else {
-                toast.error("An unknown error occurred");
+                const data = await res.json();
+                alert(data.error || "Sign-up Failed");
             }
-        } finally {
-            setLoading(false);
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                console.log("Login Failed:", err.message);
+                window.alert(`Login Failed: ${err.message}`);
+            } else {
+                console.log("Login Failed:", err);
+                window.alert("Login Failed due to unknown error");
+            }
         }
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
-                <h1 className="text-2xl font-bold mb-6 text-center">
-                    {loading ? "Processing..." : "Contact Us"}
+         <div className="min-h-screen flex items-center justify-center bg-gray-100 shadow-lg p-6 animate-fadeIn">
+            <div className="w-full max-w-md">
+                <h1 className="text-center mb-6 text-gray-700 font-light text-3xl ">
+                    We'd love to hear <span className="text-red-500 font-semibold">from you</span>. 
                 </h1>
-
-                <input
-                    type="text"
-                    placeholder="Name"
-                    className="w-full border p-2 rounded mb-4"
-                    value={user.name}
-                    onChange={(e) => setUser({ ...user, name: e.target.value })}
-
-                />
-
-                <input
-                    type="email"
-                    placeholder="Email"
-                    className="w-full border p-2 rounded mb-4"
-                    value={user.email}
-                    onChange={(e) => setUser({ ...user, email: e.target.value })}
-                />
-
-                <input
-                    type="tel"
-                    placeholder="Phone number"
-                    className="w-full border p-2 rounded mb-4"
-                    value={user.phone}
-                    onChange={(e) => setUser({ ...user, phone: e.target.value })}
-                />
-
-                <textarea
-                    placeholder="Message"
-                    className="w-full border p-2 rounded mb-4"
-                    value={user.message}
-                    onChange={(e) => setUser({ ...user, message: e.target.value })}
-                ></textarea>
-
-                <button
-                    onClick={onSignup}
-                    disabled={buttonDisable || loading}
-                    className={`w-full p-2 rounded text-white ${buttonDisable || loading
-                        ? "bg-gray-400 cursor-not-allowed"
-                        : "bg-blue-600 hover:bg-blue-700"
-                        }`}
-                >
-                    {buttonDisable ? "Fill all fields" : loading ? "Contacting..." : "Contact Us"}
-                </button>
-
-                <div className="mx-4 my-2 sm:mx-8 sm:my-3 md:mx-16 md:my-4 lg:mx-32">
-                    <Link
-                        href="/"
-                        className="text-blue-600 hover:underline text-sm sm:text-base"
+                <div className="bg-white shadow-md rounded-lg p-8">
+                    <h1 className="text-2xl text-center font-bold mb-6">Contact Us</h1>
+                    <input
+                        type="text"
+                        placeholder="Name"
+                        className="w-full border p-2 rounded mb-4"
+                        value={user.name}
+                        onChange={handleChange}
+                        name="name"
+                    />
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        className="w-full border p-2 rounded mb-4"
+                        value={user.email}
+                        onChange={handleChange}
+                        name="email"
+                    />
+                    <input
+                        type="tel"
+                        placeholder="Phone number"
+                        className="w-full border p-2 rounded mb-4"
+                        value={user.phone}
+                        onChange={handleChange}
+                        name="phone"
+                    />
+                    <textarea
+                        placeholder="Message"
+                        className="w-full border p-2 rounded mb-4"
+                        value={user.message}
+                        onChange={handleChange}
+                        name="message"
+                    ></textarea>
+                    <button
+                        onClick={onSignup}
+                        className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition-colors"
                     >
-                        Back to Home
-                    </Link>
+                        Send Message
+                    </button>
                 </div>
             </div>
         </div>

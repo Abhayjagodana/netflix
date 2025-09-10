@@ -15,6 +15,19 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "All fields are required" }, { status: 400 });
     }
 
+    if(!/^[A-Za-z\s]+$/.test(name)) {
+      return NextResponse.json({ error: "Name can only contain letters and spaces" }, { status: 400 });
+    }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
+    }
+    if(!/^\d{10}$/.test(phone)) {
+      return NextResponse.json({ error: "Phone number must be exactly 10 digits" }, { status: 400 });
+    }
+    if(message.trim().length === 5) {
+      return NextResponse.json({ error: "Message cannot be empty and 5 charachter enter" }, { status: 400 });
+    }
+
     const newContact = new Contact({
       name,
       email,
