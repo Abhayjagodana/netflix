@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { root } from "postcss";
 import { useState } from "react";
@@ -127,6 +128,13 @@ const SignupPage = () => {
         >
           Sign Up
         </button>
+
+        <p className="mt-4 text-center">
+          Already have an account?{" "}
+          <Link href="/login" className="text-purple-600 hover:underline">
+            Login
+          </Link>
+        </p>
       </div>
     </div>
   )

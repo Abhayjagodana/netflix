@@ -1,9 +1,10 @@
 "use client";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const LoginPage = () => {
-        const router = useRouter();
+    const router = useRouter();
 
     const [user, setUser] = useState({
         email: "",
@@ -29,19 +30,19 @@ const LoginPage = () => {
 
             if (res.ok) {
                 alert("Login Successful!");
-                router.push('/'); 
+                router.push('/');
             } else {
                 alert(data.error || "Login Failed");
             }
         } catch (err: unknown) {
-    if (err instanceof Error) {
-      console.log("Login Failed:", err.message);
-      window.alert(`Login Failed: ${err.message}`);
-    } else {
-      console.log("Login Failed:", err);
-      window.alert("Login Failed due to unknown error");
-    }
-  }
+            if (err instanceof Error) {
+                console.log("Login Failed:", err.message);
+                window.alert(`Login Failed: ${err.message}`);
+            } else {
+                console.log("Login Failed:", err);
+                window.alert("Login Failed due to unknown error");
+            }
+        }
     };
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-100 via-blue-200 to-purple-300 animate-fadeIn">
@@ -70,11 +71,15 @@ const LoginPage = () => {
 
                 <button className="w-full p-3 rounded-lg text-white font-semibold bg-green-600 hover:bg-green-700 transition-colors"
                     onClick={onLoginPage}
-                    
+
                 >
                     Login
                 </button>
+                <p className="mt-4 text-center">
+                    Don't have an account? <Link href="/signup" className="text-blue-600 hover:underline">Sign Up</Link>
+                </p>
             </div>
+
         </div>
     );
 };
