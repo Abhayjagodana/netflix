@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-gray-100 to-gray-300 p-6 text-center transition-opacity duration-1000 opacity-100">
@@ -7,12 +9,12 @@ export default function NotFound() {
         <p className="text-gray-600 mb-6 max-w-sm mx-auto">
           Sorry, the page you are looking for does not exist or has been moved.
         </p>
-        <a
+        <Link
           href="/"
           className="inline-block px-6 py-3 bg-black text-white rounded-full font-medium hover:bg-white hover:text-black border-2 border-black transition-colors duration-300"
         >
           Go Home
-        </a>
+        </Link>
       </div>
 
       <div className="mt-8">
