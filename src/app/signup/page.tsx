@@ -57,10 +57,15 @@ const SignupPage = () => {
         const data = await res.json();
         alert(data.error || "Sign-up Failed");
       }
-    } catch (error) {
-      console.log("Sign-up Failed", error);
-      alert("Sign-up Failed");
+    } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.log("Login Failed:", err.message);
+      window.alert(`Login Failed: ${err.message}`);
+    } else {
+      console.log("Login Failed:", err);
+      window.alert("Login Failed due to unknown error");
     }
+  }
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-100 via-blue-300 to-pink-500 animate-fadeIn">

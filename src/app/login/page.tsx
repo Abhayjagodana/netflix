@@ -33,10 +33,15 @@ const LoginPage = () => {
             } else {
                 alert(data.error || "Login Failed");
             }
-        } catch (error) {
-            console.log("Login Failed", error);
-            alert("Login Failed due to network error");
-        }
+        } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.log("Login Failed:", err.message);
+      window.alert(`Login Failed: ${err.message}`);
+    } else {
+      console.log("Login Failed:", err);
+      window.alert("Login Failed due to unknown error");
+    }
+  }
     };
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-100 via-blue-200 to-purple-300 animate-fadeIn">
