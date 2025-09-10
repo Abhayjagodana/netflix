@@ -14,6 +14,8 @@ const Footer = () => {
                     <Image
                         src="/logo1.png"
                         alt="Netflix Logo"
+                        width={100}       // set desired width
+                        height={40}
                         className="h-10 w-auto cursor-pointer hover:opacity-80 transition-opacity"
                     />
                 </Link>
