@@ -29,26 +29,42 @@
 //     matcher: ['/movie/:path*'], // movie અને તેની subroutes માટે middleware લાગુ કરો
 // };
 
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+// import { NextResponse } from "next/server";
+// import type { NextRequest } from "next/server";
 
-export function middleware(request: NextRequest) {
-    const token = request.cookies.get("auth-token")?.value;
+// export function middleware(request: NextRequest) {
+//     const token = request.cookies.get("auth-token")?.value;
 
-    // If user is accessing the movie page and not logged in
-    if (request.nextUrl.pathname.startsWith("/movie")) {
-        if (!token) {
-            const url = request.nextUrl.clone();
-            url.pathname = "/login";
-            return NextResponse.redirect(url);
-        }
-    }
+//     // If user is accessing the movie page and not logged in
+//     if (request.nextUrl.pathname.startsWith("/movie")) {
+//         if (!token) {
+//             const url = request.nextUrl.clone();
+//             url.pathname = "/login";
+//             return NextResponse.redirect(url);
+//         }
+//     }
 
-    return NextResponse.next();
+//     return NextResponse.next();
+// }
+
+// export const config = {
+//     matcher: ["/movie/:path*"], // Apply to movie pages
+// };
+
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+export function middleware(req: NextRequest) {
+  const token = req.cookies.get('auth-token');
+
+  if (req.nextUrl.pathname.startsWith('/movie') && !token) {
+    return NextResponse.redirect(new URL('/login', req.url));
+  }
+
+  return NextResponse.next();
 }
 
 export const config = {
-    matcher: ["/movie/:path*"], // Apply to movie pages
+  matcher: ['/movie/:path*'], // Protect movie page
 };
-
 
