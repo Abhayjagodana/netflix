@@ -30,7 +30,7 @@ const LoginPage = () => {
 
             if (res.ok) {
                 alert("Login Successful!");
-                router.push('/movie');
+                router.push('/');
             } else {
                 alert(data.error || "Login Failed");
             }
