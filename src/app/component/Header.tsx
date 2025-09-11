@@ -65,6 +65,11 @@ const Footer = () => {
                             Sign-up
                         </Link>
                     </li>
+                    <li>
+                        <Link href="/logout" className="hover:text-red-500 transition-colors" onClick={() => setMenuOpen(false)}>
+                            Logout
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </footer>

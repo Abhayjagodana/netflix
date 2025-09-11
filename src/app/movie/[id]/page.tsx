@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface PageProps {
-  params: Promise<{ show_id: string }>; // ✅ params is a Promise
+  params: Promise<{ id: string }>; // ✅ params is a Promise
 }
 
 interface MovieCardProps {
-  show_id: string;
+  id: string;
   title: string;
   release_year: number;
   description: string;
@@ -14,9 +14,9 @@ interface MovieCardProps {
 }
 
 const page = async ({ params }: PageProps) => {
-  const { show_id } = await params;
+  const { id } = await params;
 
-  const url = `https://netflix-movies-and-tv-shows1.p.rapidapi.com/?ids=${show_id}/list`;
+  const url = `https://netflix-movies-and-tv-shows1.p.rapidapi.com/?ids=${id}`;
   const options = {
     method: 'POST',
     headers: {
@@ -55,14 +55,16 @@ const page = async ({ params }: PageProps) => {
         </h2>
         <p className="mt-2 text-sm text-gray-600 line-clamp-3">{description}</p>
 
-        <Link href={`/movie/${show_id}`} passHref>
+        {/* <Link href={`/movie/${show_id}`} passHref>
           <button className="mt-4 px-4 py-2 bg-black text-white rounded hover:bg-white hover:text-black transition-colors duration-300">
             View Details
           </button>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
 };
 
 export default page;
+
+
