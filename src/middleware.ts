@@ -50,4 +50,5 @@ export function middleware(request: NextRequest) {
 export const config = {
     matcher: ["/movie/:path*"], // Apply to movie pages
 };
-// export const config = {
+
+
