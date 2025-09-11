@@ -22,7 +22,7 @@ export const POST = async (request: Request) => {
         return NextResponse.json({ message: "Login successful" }, 
             { status: 200 ,
                 headers: {
-                    'Set-Cookie': `auth-token=${user._id}; Path=/; HttpOnly`
+                    'Set-Cookie': `auth-token=${user._id}; Path=/; HttpOnly; Secure; SameSite=Lax`
                 }
             }
         
