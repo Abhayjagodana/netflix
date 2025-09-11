@@ -21,18 +21,41 @@
 //   }
 // };
 
+// import mongoose from "mongoose";
+
+// let isConnected = false;
+
+// export const connect = async () => {
+//   if (isConnected) return;
+
+//   if (!process.env.MONGO_URI) {
+//     throw new Error("Please define the MONGO_URI environment variable inside .env");
+//   }
+
+//   await mongoose.connect(process.env.MONGO_URI);
+//   isConnected = true;
+//   console.log("MongoDB connected");
+// };
+
 import mongoose from "mongoose";
 
 let isConnected = false;
 
 export const connect = async () => {
-  if (isConnected) return;
-
-  if (!process.env.MONGO_URI) {
-    throw new Error("Please define the MONGO_URI environment variable inside .env");
+  if (isConnected) {
+    console.log("Already connected to MongoDB");
+    return;
   }
+   if (!process.env.MONGO_URI) {
+        throw new Error("Please define the MONGO_URI environment variable inside .env.local");
+    }
 
-  await mongoose.connect(process.env.MONGO_URI);
-  isConnected = true;
-  console.log("MongoDB connected");
+  try {
+await mongoose.connect(process.env.MONGO_URI!);
+    isConnected = true;
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+    throw error;
+  }
 };

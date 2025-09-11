@@ -40,7 +40,6 @@ export const POST = async (request: Request) => {
             email,
             phone,
             password: hashedPassword,
-            // confirmPassword: hashedPassword,
             createdAt: new Date(),
         });
 
